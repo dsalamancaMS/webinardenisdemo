@@ -5,8 +5,6 @@ import (
   "html/template"
   "log"
   "net/http"  
-  "os"
-  "github.com/Microsoft/ApplicationInsights-Go/appinsights"
 )
 
 type PageVars struct {
@@ -15,23 +13,13 @@ type PageVars struct {
 }
 
 func main() {
-	client := appinsights.NewTelemetryClient(os.Getenv("APPINSIGHTS_INSTRUMENTATIONKEY"))
-	request := appinsights.NewRequestTelemetry("GET", "https://myapp.azurewebsites.net/", 1 , "Success")
-	client.Track(request)	
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	http.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("img"))))
 	http.Handle("/fonts/", http.StripPrefix("/fonts/", http.FileServer(http.Dir("fonts"))))	
 	http.HandleFunc("/", Home)
-	log.Fatal(http.ListenAndServe(getPort(), nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func getPort() string {
-	p := os.Getenv("HTTP_PLATFORM_PORT")
-	if p != "" {
-		return ":" + p
-	}
-	return ":80"
-}
 
 func render(w http.ResponseWriter, tmpl string, pageVars PageVars) {
 

@@ -14,7 +14,9 @@
             width: 100%;
             background-color: #1d539d;
             color: white;
-            padding-top: 6%;
+            padding-top: 10%;
+            padding-left: 30%;
+            padding-right: 30%;
             box-sizing: border-box;
             overflow-y: auto;
             overflow-x: hidden;
@@ -22,8 +24,8 @@
         }
 
         .cloud-image {
-            width: 1200px;
-            height: 250px;
+            max-width: 1200px;
+            max-height: 250px;
             padding-bottom: 50px;
             margin: auto;
         }
