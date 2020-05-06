@@ -1,6 +1,6 @@
 FROM golang:latest 
 RUN mkdir /app 
-ADD . /app/ 
+ADD Application/ /app/ 
 WORKDIR /app
 RUN go get -d
 RUN go build -o main . 
