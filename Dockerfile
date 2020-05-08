@@ -5,4 +5,4 @@ WORKDIR /app
 RUN go get -d
 RUN go build -o main . 
 CMD ["/app/main"]
-EXPOSE 80
+EXPOSE 8080
