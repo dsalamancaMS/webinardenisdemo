@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 )
 
 type PageVars struct {
@@ -37,8 +38,9 @@ func render(w http.ResponseWriter, tmpl string, pageVars PageVars) {
 }
 
 func Home(w http.ResponseWriter, req *http.Request) {
+	serverName := os.Getenv("HOSTNAME")
 	pageVars := PageVars{
-		Message:  "Hola Rocket Girls!",
+		Message:  "Hello from Container ID" + serverName,
 		Language: "Go Lang",
 	}
 	render(w, "index.html", pageVars)
