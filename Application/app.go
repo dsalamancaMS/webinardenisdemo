@@ -11,6 +11,7 @@ import (
 type PageVars struct {
 	Message  string
 	Language string
+	ContainerName string
 }
 
 func main() {
@@ -38,10 +39,14 @@ func render(w http.ResponseWriter, tmpl string, pageVars PageVars) {
 }
 
 func Home(w http.ResponseWriter, req *http.Request) {
-	serverName := os.Getenv("HOSTNAME")
+	 
+	containerName:= os.Getenv("HOSTNAME")
+
 	pageVars := PageVars{
-		Message:  "Hello from Container ID" + serverName,
+		Message:  "Hello from Container ID",
 		Language: "Go Lang",
+		ContainerName: containerName,
 	}
+	
 	render(w, "index.html", pageVars)
 }
